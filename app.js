@@ -6,6 +6,7 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const {sequelize} = require('./src/models');
+const redisClient = require("./src/utils/redis");
 dotenv.config();
 
 const app = express()
@@ -17,6 +18,16 @@ nunjucks.configure('views', {
   watch: true,
 });
 
+redisClient.connect().catch(console.error);
+
+redisClient.on('connect', () => {
+    console.log(`[Redis] Redis connected on redis container`);
+  });
+  
+  redisClient.on('error', (err) => {
+    console.error('[Redis] Redis Client Error', err);
+  });
+  
 sequelize.sync({force: false})
   .then(()=> {
     console.log('데이터베이스 연결 성공');
