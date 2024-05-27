@@ -8,13 +8,13 @@ module.exports = class User extends Sequelize.Model {
                 allowNull: false,
                 defaultValue: Sequelize.UUIDV4,
             },
-            phone: {
-                type: Sequelize.STRING(15),
-                allowNull: false,
-                unique: true,
-            },
-            nickname: {
-                type: Sequelize.STRING(15),
+            // phone: {
+            //     type: Sequelize.STRING(15),
+            //     allowNull: false,
+            //     unique: true,
+            // },
+            email: {
+                type: Sequelize.CHAR(100),
                 allowNull: false,
                 unique: true,
             },
@@ -22,33 +22,19 @@ module.exports = class User extends Sequelize.Model {
                 type: Sequelize.STRING(150),
                 allowNull: false,
             },
-            phone: {
-                type: Sequelize.CHAR(20),
-                allowNull: false,
-                unique: true,
-            },
-            name: {
-                type: Sequelize.CHAR(30),
-                allowNull: false,
-                unique: true,
-            },
             nickname: {
-                type: Sequelize.CHAR(30),
+                type: Sequelize.STRING(15),
                 allowNull: false,
                 unique: true,
             },
-            email: {
-                type: Sequelize.CHAR(100),
-                allowNull: false,
-                unique: true,
-            },
-            birthday: {
-                type: Sequelize.DATE,
-                allowNull: false,
-            },
+            // name: {
+            //     type: Sequelize.CHAR(30),
+            //     allowNull: false,
+            //     unique: true,
+            // },
         }, {
             sequelize,
-            timestamps: true,
+            timestamps: false,
             underscored: false,
             modelName: 'User',
             tableName: 'user',
