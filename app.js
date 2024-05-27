@@ -6,6 +6,7 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const {sequelize} = require('./src/models');
+const authRouter = require('./src/routes/auth');
 const redisClient = require("./src/utils/redis");
 dotenv.config();
 
@@ -51,6 +52,8 @@ app.use(session({
     maxAge: 3600000,
   },
 }));
+
+app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
