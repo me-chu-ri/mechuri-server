@@ -27,11 +27,16 @@ module.exports = class User extends Sequelize.Model {
                 allowNull: false,
                 unique: true,
             },
-            // name: {
-            //     type: Sequelize.CHAR(30),
-            //     allowNull: false,
-            //     unique: true,
-            // },
+            joined_at: {
+                type: Sequelize.DATE,
+                allowNull: false,
+                defaultValue: Sequelize.NOW,
+            },
+            updated_at: {
+                type: Sequelize.DATE,
+                allowNull: false,
+                defaultValue: Sequelize.NOW,
+            },
         }, {
             sequelize,
             timestamps: false,
